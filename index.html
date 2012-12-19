@@ -1,0 +1,69 @@
+<script>
+
+
+  window.doBF = function(instructions) {
+
+		var data = [], 
+			dataPointer = 0,
+			instructionsPointer = 0,
+			output = '';
+
+		for (var i=0; i< 1000; i++) {
+
+			data[i] = 0;
+		}
+
+
+		while (instructions.charAt(instructionsPointer) !== '') {
+
+			var instruction = instructions.charAt(instructionsPointer);
+
+			switch(instruction) {
+				case '+':
+					data[dataPointer]++;
+					instructionsPointer++;
+				  	break;
+				case '-':
+					data[dataPointer]--;
+					instructionsPointer++;
+					break;
+			  	case '<':
+					dataPointer--;
+					instructionsPointer++;
+   				  	break;
+				case '>':
+					dataPointer++;
+					instructionsPointer++;
+   				  	break;
+				case '[':
+					if (data[dataPointer === 0]) {
+						while (instructions.charAt(instructionsPointer) !== ']') {
+							instructionsPointer++;
+						}
+					} 
+					instructionsPointer++;
+					break;				  
+			  	case ']':	
+					if (data[dataPointer] !== 0) {
+						while (instructions.charAt(instructionsPointer) !== '[') {
+							instructionsPointer--;
+						}	
+					}
+					instructionsPointer++;
+					break;				  
+			  	case '.':
+					output += String.fromCharCode(data[dataPointer]);
+					instructionsPointer++;					
+					break;				
+			}
+		}
+
+		console.log(output);
+
+	};
+
+	var input = '++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.'
+
+	window.doBF(input);
+
+</script>
