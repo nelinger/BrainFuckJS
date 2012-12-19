@@ -1,7 +1,6 @@
 <script>
 
-
-  window.doBF = function(instructions) {
+	window.doBF = function(instructions) {
 
 		var data = [], 
 			dataPointer = 0,
@@ -21,19 +20,15 @@
 			switch(instruction) {
 				case '+':
 					data[dataPointer]++;
-					instructionsPointer++;
 				  	break;
 				case '-':
 					data[dataPointer]--;
-					instructionsPointer++;
 					break;
 			  	case '<':
 					dataPointer--;
-					instructionsPointer++;
    				  	break;
 				case '>':
 					dataPointer++;
-					instructionsPointer++;
    				  	break;
 				case '[':
 					if (data[dataPointer === 0]) {
@@ -41,7 +36,6 @@
 							instructionsPointer++;
 						}
 					} 
-					instructionsPointer++;
 					break;				  
 			  	case ']':	
 					if (data[dataPointer] !== 0) {
@@ -49,21 +43,21 @@
 							instructionsPointer--;
 						}	
 					}
-					instructionsPointer++;
 					break;				  
 			  	case '.':
 					output += String.fromCharCode(data[dataPointer]);
-					instructionsPointer++;					
-					break;				
+					break;
+				
 			}
+			instructionsPointer++;
 		}
 
-		console.log(output);
+		return output;
 
 	};
 
 	var input = '++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.'
 
-	window.doBF(input);
+	console.log(window.doBF(input));
 
 </script>
